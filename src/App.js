@@ -1,7 +1,8 @@
+import "./App.css";
+
 import React from "react";
 
 import Dates from "./Dates";
-import "./App.css";
 
 function App() {
   return (
