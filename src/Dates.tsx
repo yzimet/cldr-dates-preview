@@ -1,16 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
 import { useFetch } from "react-hooks-async";
 
 import DateFormatGroup from "./DateFormatGroup";
-import DateSelector from "./DateSelector";
-import LocaleSelector from "./LocaleSelector";
-import TimeSelector from "./TimeSelector";
 
 const BASE_URL: string = "/api/locales";
-const DEFAULT_LOCALE: string = "en";
 
 interface LocalesResponse {
   metadata: {
@@ -43,13 +39,14 @@ interface LocalesResponse {
   }[];
 }
 
-function Dates() {
-  const today_iso = new Date().toISOString(); // 2020-03-25T20:17:43.701Z
-  const today_iso_date = today_iso.substring(0, 10); // 2020-03-25
-  const today_iso_time = today_iso.substring(11, 19); // 20:17:43
-  const [locale, setLocale] = useState(DEFAULT_LOCALE);
-  const [date, setDate] = useState(today_iso_date);
-  const [time, setTime] = useState(today_iso_time);
+type Props = {
+  locale: string;
+  date: string;
+  time: string;
+};
+
+function Dates(props: Props) {
+  const { locale, date, time } = props;
   const url = `${BASE_URL}/${locale}?datetime=${date}T${time}Z`;
   const { pending, result } = useFetch<LocalesResponse>(url);
 
@@ -58,31 +55,20 @@ function Dates() {
   }
 
   return (
-    <div>
-      <div>
-        <LocaleSelector locale={locale} onChange={setLocale} />
-      </div>
-      <div>
-        <DateSelector date={date} onChange={setDate} />
-      </div>
-      <div>
-        <TimeSelector time={time} onChange={setTime} />
-      </div>
-      <TableContainer component={Paper}>
-        <Table size="small" aria-label="Date formats">
-          <DateFormatGroup results={result.dateFormats} title="dateFormats" />
-          <DateFormatGroup results={result.timeFormats} title="timeFormats" />
-          <DateFormatGroup
-            results={result.dateTimeFormats}
-            title="dateTimeFormats"
-          />
-          <DateFormatGroup
-            results={result.availableFormats}
-            title="availableFormats"
-          />
-        </Table>
-      </TableContainer>
-    </div>
+    <TableContainer component={Paper}>
+      <Table size="small" aria-label="Date formats">
+        <DateFormatGroup results={result.dateFormats} title="dateFormats" />
+        <DateFormatGroup results={result.timeFormats} title="timeFormats" />
+        <DateFormatGroup
+          results={result.dateTimeFormats}
+          title="dateTimeFormats"
+        />
+        <DateFormatGroup
+          results={result.availableFormats}
+          title="availableFormats"
+        />
+      </Table>
+    </TableContainer>
   );
 }
 
