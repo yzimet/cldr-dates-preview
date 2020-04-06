@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
 import Paper from "@material-ui/core/Paper";
@@ -9,16 +8,9 @@ import DateFormatGroup from "./DateFormatGroup";
 import DateSelector from "./DateSelector";
 import LocaleSelector from "./LocaleSelector";
 import TimeSelector from "./TimeSelector";
-// import useFetch from "./utils/useFetch";
 
 const BASE_URL: string = "/api/locales";
 const DEFAULT_LOCALE: string = "en";
-
-const useStyles = makeStyles({
-  table: {
-    minWidth: 650
-  }
-});
 
 interface LocalesResponse {
   metadata: {
@@ -52,8 +44,6 @@ interface LocalesResponse {
 }
 
 function Dates() {
-  const classes = useStyles();
-
   const today_iso = new Date().toISOString(); // 2020-03-25T20:17:43.701Z
   const today_iso_date = today_iso.substring(0, 10); // 2020-03-25
   const today_iso_time = today_iso.substring(11, 19); // 20:17:43
@@ -79,7 +69,7 @@ function Dates() {
         <TimeSelector time={time} onChange={setTime} />
       </div>
       <TableContainer component={Paper}>
-        <Table className={classes.table} size="small" aria-label="Date formats">
+        <Table size="small" aria-label="Date formats">
           <DateFormatGroup results={result.dateFormats} title="dateFormats" />
           <DateFormatGroup results={result.timeFormats} title="timeFormats" />
           <DateFormatGroup
