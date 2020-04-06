@@ -12,6 +12,7 @@ type Props = {
     value: string;
   }[];
   title: string;
+  rtl?: boolean;
 };
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export default function DateFormatGroup(props: Props) {
-  const { results, title } = props;
+  const { results, rtl, title } = props;
   const classes = useStyles();
 
   return (
@@ -40,7 +41,9 @@ export default function DateFormatGroup(props: Props) {
               {result.name}
             </TableCell>
             <TableCell>{result.skeleton}</TableCell>
-            <TableCell>{result.value}</TableCell>
+            <TableCell align={rtl ? "right" : "left"} dir={rtl ? "rtl" : "ltr"}>
+              {result.value}
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

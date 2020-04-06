@@ -11,6 +11,7 @@ const BASE_URL: string = "/api/locales";
 interface LocalesResponse {
   metadata: {
     locale: string;
+    rtl: boolean;
   };
   dateFormats: {
     name: string;
@@ -54,18 +55,30 @@ function Dates(props: Props) {
     return <div>Loading</div>;
   }
 
+  const { rtl } = result.metadata;
+
   return (
     <TableContainer component={Paper}>
       <Table size="small" aria-label="Date formats">
-        <DateFormatGroup results={result.dateFormats} title="dateFormats" />
-        <DateFormatGroup results={result.timeFormats} title="timeFormats" />
+        <DateFormatGroup
+          results={result.dateFormats}
+          title="dateFormats"
+          rtl={rtl}
+        />
+        <DateFormatGroup
+          results={result.timeFormats}
+          title="timeFormats"
+          rtl={rtl}
+        />
         <DateFormatGroup
           results={result.dateTimeFormats}
           title="dateTimeFormats"
+          rtl={rtl}
         />
         <DateFormatGroup
           results={result.availableFormats}
           title="availableFormats"
+          rtl={rtl}
         />
       </Table>
     </TableContainer>
