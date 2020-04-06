@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
+import "typeface-roboto";
 
 import Dates from "./Dates";
 import DateSelector from "./DateSelector";
