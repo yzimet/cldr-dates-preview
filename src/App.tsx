@@ -22,15 +22,9 @@ function App() {
     <React.Fragment>
       <CssBaseline />
       <Container maxWidth="lg">
-        <div>
-          <LocaleSelector locale={locale} onChange={setLocale} />
-        </div>
-        <div>
-          <DateSelector date={date} onChange={setDate} />
-        </div>
-        <div>
-          <TimeSelector time={time} onChange={setTime} />
-        </div>
+        <LocaleSelector locale={locale} onChange={setLocale} />
+        <DateSelector date={date} onChange={setDate} />
+        <TimeSelector time={time} onChange={setTime} />
         <Dates locale={locale} date={date} time={time} />
       </Container>
     </React.Fragment>
