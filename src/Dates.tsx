@@ -1,7 +1,6 @@
 import React from "react";
 import Table from "@material-ui/core/Table";
 import TableContainer from "@material-ui/core/TableContainer";
-import Paper from "@material-ui/core/Paper";
 import { useFetch } from "react-hooks-async";
 
 import DateFormatGroup from "./DateFormatGroup";
@@ -58,7 +57,7 @@ function Dates(props: Props) {
   const { rtl } = result.metadata;
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <Table size="small" aria-label="Date formats">
         <DateFormatGroup
           results={result.dateFormats}
