@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-import Paper from "@material-ui/core/Paper";
+import Box from "@material-ui/core/Box";
 import "typeface-roboto";
 
 import Header from "./Header";
@@ -14,15 +13,6 @@ import Introduction from "./Introduction";
 
 const DEFAULT_LOCALE: string = "en";
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    body: {
-      marginBottom: theme.spacing(2),
-      marginTop: theme.spacing(2)
-    }
-  })
-);
-
 function App() {
   const today_iso = new Date().toISOString(); // 2020-03-25T20:17:43.701Z
   const today_iso_date = today_iso.substring(0, 10); // 2020-03-25
@@ -31,20 +21,22 @@ function App() {
   const [date, setDate] = useState(today_iso_date);
   const [time, setTime] = useState(today_iso_time);
 
-  const classes = useStyles();
-
   return (
     <React.Fragment>
       <CssBaseline />
       <Header />
       <Container maxWidth="md">
-        <Paper className={classes.body}>
+        <Box marginY={2}>
           <Introduction />
-          <LocaleSelector locale={locale} onChange={setLocale} />
-          <DateSelector date={date} onChange={setDate} />
+        </Box>
+        <Box marginY={2}>
+          <LocaleSelector locale={locale} onChange={setLocale} />{" "}
+          <DateSelector date={date} onChange={setDate} />{" "}
           <TimeSelector time={time} onChange={setTime} />
+        </Box>
+        <Box marginY={2}>
           <Dates locale={locale} date={date} time={time} />
-        </Paper>
+        </Box>
       </Container>
     </React.Fragment>
   );

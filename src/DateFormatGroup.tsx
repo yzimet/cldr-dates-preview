@@ -18,7 +18,7 @@ type Props = {
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     head: {
-      backgroundColor: theme.palette.primary.light
+      backgroundColor: theme.palette.background.paper
     }
   })
 );

@@ -15,6 +15,7 @@ function DateSelector(props: Props) {
       type="date"
       defaultValue={date}
       onChange={e => onChange(e.target.value)}
+      variant="outlined"
       InputLabelProps={{
         shrink: true
       }}

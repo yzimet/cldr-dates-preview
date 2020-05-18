@@ -15,6 +15,7 @@ function TimeSelector(props: Props) {
       type="time"
       defaultValue={time}
       onChange={e => onChange(e.target.value)}
+      variant="outlined"
       InputLabelProps={{
         shrink: true
       }}

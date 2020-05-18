@@ -1,5 +1,6 @@
 import React from "react";
 import Autocomplete from "@material-ui/lab/Autocomplete";
+import FormControl from "@material-ui/core/FormControl";
 import TextField from "@material-ui/core/TextField";
 import { useFetch } from "react-hooks-async";
 
@@ -40,25 +41,30 @@ function LocaleSelector(props: Props) {
   }
 
   return (
-    <Autocomplete
-      id="locale"
-      options={locales as LocaleDetails[]}
-      getOptionLabel={(locale: LocaleDetails) => {
-        let label: string = locale.locale;
-        if (locale.name) {
-          label += `: ${locale.name}`;
-        }
-        return label;
-      }}
-      onChange={(event: any, newValue: LocaleDetails | null) => {
-        if (newValue) {
-          onChange(newValue.locale);
-        }
-      }}
-      style={{ width: 300 }}
-      renderInput={(params: any) => <TextField {...params} label="Locale" />}
-      value={localeDetails}
-    />
+    <FormControl>
+      <Autocomplete
+        id="locale"
+        disableClearable
+        options={locales as LocaleDetails[]}
+        getOptionLabel={(locale: LocaleDetails) => {
+          let label: string = locale.locale;
+          if (locale.name) {
+            label += `: ${locale.name}`;
+          }
+          return label;
+        }}
+        onChange={(event: any, newValue: LocaleDetails | null) => {
+          if (newValue) {
+            onChange(newValue.locale);
+          }
+        }}
+        style={{ width: 300 }}
+        renderInput={(params: any) => (
+          <TextField {...params} label="Locale" variant="outlined" />
+        )}
+        value={localeDetails}
+      />
+    </FormControl>
   );
 }
 
